@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package entities;
+package com.byond.reminderdbservice.model;
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+//import javax.persistence.NamedQueries;
+//import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,20 +18,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Isuru
- */
+
 @Entity
 @Table(name = "reminders")
 @XmlRootElement
-@NamedQueries({
+/*@NamedQueries({
     @NamedQuery(name = "Reminders.findAll", query = "SELECT r FROM Reminders r")
     , @NamedQuery(name = "Reminders.findById", query = "SELECT r FROM Reminders r WHERE r.id = :id")
     , @NamedQuery(name = "Reminders.findByName", query = "SELECT r FROM Reminders r WHERE r.name = :name")
     , @NamedQuery(name = "Reminders.findByDate", query = "SELECT r FROM Reminders r WHERE r.date = :date")
     , @NamedQuery(name = "Reminders.findByIsComplete", query = "SELECT r FROM Reminders r WHERE r.isComplete = :isComplete")})
-public class Reminders implements Serializable {
+    */
+public class Reminder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,15 +47,19 @@ public class Reminders implements Serializable {
     private Date date;
     @Column(name = "isComplete")
     private Boolean isComplete;
+    @Column(name = "userid")
+    private Integer userid;
 
-    public Reminders() {
+    
+
+    public Reminder() {
     }
 
-    public Reminders(Integer id) {
+    public Reminder(Integer id) {
         this.id = id;
     }
 
-    public Reminders(Integer id, Date date) {
+    public Reminder(Integer id, Date date) {
         this.id = id;
         this.date = date;
     }
@@ -86,7 +84,15 @@ public class Reminders implements Serializable {
         return date;
     }
 
-    public void setDate(Date date) {
+    public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public void setDate(Date date) {
         this.date = date;
     }
 
@@ -108,19 +114,24 @@ public class Reminders implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Reminders)) {
+        if (!(object instanceof Reminder)) {
             return false;
         }
-        Reminders other = (Reminders) object;
+        Reminder other = (Reminder) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "entities.Reminders[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "Reminder [id=" + id + ", name=" + name + ", date=" + date + ", isComplete=" + isComplete + ", userid="
+				+ userid + "]";
+	}
+
+    
+
+    
     
 }
