@@ -15,6 +15,7 @@ __Current Stage :__
 
 In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I going to upload the images to docker hub https://hub.docker.com/r/darknautic/micro-machines/ along with the config files .
 
+__ENDPOINTS__
 
 + POST  	http://localhost:9000/api/reminders-db-services/reminders
 + PUT   	http://localhost:9000/api/reminders-db-services/reminders/{id}
