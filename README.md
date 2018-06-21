@@ -17,21 +17,22 @@ In the projects you will find a combination of Spring framework , JPA, OGM , spr
 
 __ENDPOINTS__
 
-+ POST  	http://localhost:9000/api/reminders-db-services/reminders
-+ PUT   	http://localhost:9000/api/reminders-db-services/reminders/{id}
-+ DELETE	http://localhost:9000/api/reminders-db-services/reminders/{id}
-+ GET		http://localhost:9000/api/reminders-db-services/reminders/{id}
-+ GET		http://localhost:9000/api/reminders-db-services/reminders/userid/{userid} *a
-+ GET		http://localhost:9000/api/reminders-db-services/reminders/count
+```
 
-+ POST	   http://localhost:9000/api/users-db-services/users
-+ PUT		http://localhost:9000/api/users-db-services/users/{id}
-+ DELETE	http://localhost:9000/api/users-db-services/users/{id}
-+ GET		http://localhost:9000/api/users-db-services/users/{id}
-+ GET		http://localhost:9000/api/users-db-services/users/id/{username}   *b
+POST	http://localhost:9000/api/reminders-db-services/reminders
+PUT	http://localhost:9000/api/reminders-db-services/reminders/{id}
+DELETE	http://localhost:9000/api/reminders-db-services/reminders/{id}
+GET	http://localhost:9000/api/reminders-db-services/reminders/{id}
+GET	http://localhost:9000/api/reminders-db-services/reminders/userid/{userid} *a
+GET	http://localhost:9000/api/reminders-db-services/reminders/count
 
+POST	http://localhost:9000/api/users-db-services/users
+PUT	http://localhost:9000/api/users-db-services/users/{id}
+DELETE	http://localhost:9000/api/users-db-services/users/{id}
+GET	http://localhost:9000/api/users-db-services/users/{id}
+GET	http://localhost:9000/api/users-db-services/users/id/{username}  *b
 
-+ GET		http://localhost:9000/api/reminders-fetch-services/rest/reminders/{username} *c
+GET	http://localhost:9000/api/reminders-fetch-services/rest/reminders/{username}  *c
 
-
-*** c uses a and b  .
+```
+*** _c_ uses _a_ and _b_  .
