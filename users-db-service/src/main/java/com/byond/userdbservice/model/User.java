@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -27,6 +28,8 @@ public class User implements Serializable {
     @Size(max = 100)
     @Column(name = "username")
     private String username;
+    @Column(name = "hashpassword")
+    private String hashpassword;
     @Column(name = "isActive")
     private Boolean isActive;
 	
@@ -35,36 +38,57 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(Integer id, @Size(max = 100) String username, Boolean isActive) {
+	public User(Integer id, @Size(max = 100) String username, String hashpassword, Boolean isActive) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.hashpassword =  hashpassword;
 		this.isActive = isActive;
 	}
 
-   
-    public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getHashpassword() {
+		return hashpassword;
+	}
+
+	public void setHashpassword(String hashpassword) {
+		this.hashpassword = hashpassword;
+	}
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
+
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", isActive=" + isActive + "]";
+		return "User [id=" + id + ", username=" + username + ", hashpassword=" + hashpassword + ", isActive=" + isActive
+				+ "]";
 	}
+
+	
+   
+
+	
+	
 
     
     

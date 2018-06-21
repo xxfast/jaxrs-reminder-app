@@ -1,11 +1,10 @@
 spring:
   application:
-    name: reminder-db-service
+    name: reminders-db-service
   datasource:
-    url: jdbc:mysql://localhost:3306/reminderdbservice?useSSL=false
+    url: jdbc:mysql://mysql-reminders:3306/remindersdb?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: qazwsx
+    username: root    
   jpa:
     show-sql: true
     hibernate:
@@ -28,6 +27,7 @@ eureka:
     fetch-registry: true
     instanceInfoReplicationIntervalSeconds: 180
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://reminders-registry-service:8761/eureka/
   instance:
-    hostname: localhost
+    hostname: reminders-registry-service
+  

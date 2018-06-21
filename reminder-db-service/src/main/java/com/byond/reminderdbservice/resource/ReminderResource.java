@@ -3,10 +3,11 @@ package com.byond.reminderdbservice.resource;
 
 import com.byond.reminderdbservice.model.Reminder;
 import com.byond.reminderdbservice.repository.RemindersRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,15 +26,25 @@ import java.util.Optional;
 @RequestMapping("/reminders")
 public class ReminderResource {
 
-	private static final Logger log = LoggerFactory.getLogger(ReminderResource.class);
-	
 	@Autowired
 	RemindersRepository repository;
+	private static final Logger log = LoggerFactory.getLogger(ReminderResource.class);
 	
-	@PostMapping	
-	public void create(@RequestBody Reminder reminder) {
-		log.debug("Attempt to add new reminder :" + reminder.toString());
-		repository.save(reminder);
+
+	@PostMapping
+	public ResponseEntity<Void> create(@RequestBody Reminder reminder) {
+		
+		if ( repository.existsById(reminder.getId()) ) {			
+			log.warn("Reminder already exists in the database  :" + reminder.toString());
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+		else {
+			repository.save(reminder);
+			log.debug("New reminder added :" + reminder.toString());
+			return new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		
+		
 	}
 	
 	@PutMapping("/{id}")
@@ -72,18 +82,16 @@ public class ReminderResource {
 		return remindersName;
 	}
 	
-	@GetMapping	
-	public List<Reminder> findAll(){			
-		List<Reminder> reminders = repository.findAll();
-		
-		log.debug("FindALL Size :" +reminders.size());
-		
-		if(reminders.size() == 0) 
-			reminders = new ArrayList<>();
-			
-		return reminders;
-		
-	}
+	/** To be implemented as another service
+	 * TODO : remove getAll  functionality from here
+	 */
+//	@GetMapping
+//	public List<Reminder> getAllReminders(){
+//		List<Reminder> reminders =  new ArrayList<>(); 
+//		reminders = repository.findAll();
+//		
+//		return reminders;		
+//	}
 	
 	@GetMapping("/{from}/{to}")
 	public List<Reminder> findRange(@PathVariable("from") Integer from, @PathVariable("to") Integer to ){
@@ -102,4 +110,6 @@ public class ReminderResource {
 		
 		return String.valueOf(repository.count());
 	}
+	
+	
 }

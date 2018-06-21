@@ -1,4 +1,4 @@
-package com.byond.addnewreminderservice;
+package com.byond.reminderslistservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

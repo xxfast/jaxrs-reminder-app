@@ -9,7 +9,7 @@ $( function() {
 
 		$.ajax({
 				type: 'GET',
-			 	url: 'http://localhost:9000/api/users-db-service/rest/reminders/username/'+username,			  			  
+			 	url: 'http://localhost:9000/api/reminders-fetch-services/rest/reminders/'+username,			  			  
 			 	success: function(data){
 			 		if(data.length > 0){
 			 			$.each( data , function(index,value){ 			  			

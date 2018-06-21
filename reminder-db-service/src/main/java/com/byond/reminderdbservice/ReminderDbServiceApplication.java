@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.byond.reminderdbservice.repository.RemindersRepository;
+
+
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
@@ -15,10 +17,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class ReminderDbServiceApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(ReminderDbServiceApplication.class);
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(ReminderDbServiceApplication.class, args);
-		
+
 		log.info("Application \"Reminder Database Service\" running...");
+
 	}
+
+
 }

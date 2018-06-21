@@ -1,6 +1,6 @@
 spring:
   application:
-    name: reminders-list-service
+    name: reminders-fetch-service
 server:
   port: 9012
 
@@ -12,6 +12,7 @@ eureka:
     fetch-registry: true
     instanceInfoReplicationIntervalSeconds: 180
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://reminders-registry-service:8761/eureka/
   instance:
-    hostname: localhost
+    hostname: reminders-registry-service
+   

@@ -11,8 +11,8 @@ import com.byond.userdbservice.repository.UsersRepository;
 
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@EnableEurekaClient
 @SpringBootApplication
+@EnableEurekaClient
 @EnableJpaRepositories(basePackageClasses=UsersRepository.class)
 public class UserDbServiceApplication {
 

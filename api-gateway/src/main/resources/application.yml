@@ -4,14 +4,14 @@ server:
 zuul: 
   prefix: /api
   routes:
-    reminder-db-service:
-      path: /reminder-db-service/**
-      url: http://192.168.0.50:9010/    
-    users-db-service:
-      path: /users-db-service/**
-      url: http://192.168.0.50:9011/    
-    reminders-list-service:
-      path: /users-db-service/**
-      url: http://192.168.0.50:9012/    
+    reminders-db-services: 
+      path: /reminders-db-services/**
+      url: http://localhost:9010/    
+    users-db-services: 
+      path: /users-db-services/**
+      url: http://localhost:9011/
+    reminders-fetch-services: 
+      path: /reminders-fetch-services/**
+      url: http://localhost:9012/    
     
     

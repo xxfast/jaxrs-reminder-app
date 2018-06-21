@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>registry-service</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -59,6 +58,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+						<finalName>reminders-registry-service</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -75,4 +77,5 @@
 	</repositories>
 
 
+	<description>Registry Service for Reminders App</description>
 </project>

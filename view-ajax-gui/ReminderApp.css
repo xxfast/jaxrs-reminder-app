@@ -1,0 +1,10 @@
+#spanNewUser{
+	color:gray;	
+	display: block;
+	transition: transform .5s ease-in-out;
+}
+#spanNewUser:hover{
+	color:black;
+	transform: scale(1.1);
+	cursor: pointer;
+}

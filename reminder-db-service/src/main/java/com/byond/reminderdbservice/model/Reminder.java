@@ -63,8 +63,18 @@ public class Reminder implements Serializable {
         this.id = id;
         this.date = date;
     }
+    
+    
+    public Reminder(Integer id, @Size(max = 100) String name, @NotNull Date date, Boolean isComplete, Integer userid) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.isComplete = isComplete;
+		this.userid = userid;
+	}
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

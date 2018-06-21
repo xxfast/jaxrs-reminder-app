@@ -10,5 +10,6 @@ import com.byond.userdbservice.model.User;
 public interface UsersRepository extends JpaRepository<User, Integer> {	
 
 	
-	public Integer findByUsername(String username);
+	public User findByUsername(String username);
+	
 }
