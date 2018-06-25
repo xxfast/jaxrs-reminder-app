@@ -29,6 +29,7 @@ public class UserResource {
 	@Autowired
 	UsersRepository repository;
 	
+	
 	@PostMapping	
 	public ResponseEntity<Void> create(@RequestBody User user) {
 		
@@ -58,11 +59,13 @@ public class UserResource {
 		
 	}
 	
+	
 	@DeleteMapping("/{id}")
 	public void remove( @PathVariable("id") Integer id ) {
 		repository.deleteById(id);		
 	}
-		
+	
+	
 	@GetMapping("/{id}")
 	public User  find(@PathVariable("id") Integer id) {
 		User user =  new User();
@@ -72,6 +75,7 @@ public class UserResource {
 		return userOpt.get() ;
 	}
 
+	
 	@GetMapping("/id/{username}")
 	public Integer find(@PathVariable("username") String username) {
 		 return repository.findByUsername(username).getId();
