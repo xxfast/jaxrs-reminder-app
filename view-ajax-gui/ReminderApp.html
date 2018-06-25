@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head> 
+<head>
 	<meta charset="utf-8">
 	<title>Reminder App</title>
 	<meta name="description" content="Reminder App - Microservices">
@@ -10,63 +10,111 @@
 	<link href="ReminderApp.css" rel="stylesheet">
 </head>
 
-	<body>  
-		<header>
-		</header>
+	<body >
 
-		<div class="container"> 
-			<br>
-			<div class="row">		
-				<div class="col-10">
-					<h2>APP :: Reminders </h2>
-				</div>				
-				<div class="col-2"><span id="spanNewUser">New User</span></div>
-				<div id="inputNewUser"></div>
-			</div>
-			<hr><br>	
-			<div id="loginPanel">
-				
-			</div>
-			<div id="remindersPanel">	
-				<form id="loadReminders">
-				  <div class="form-group">			    
-				    <input type="username" class="form-control" id="username_input" aria-describedby="username" placeholder="Enter Username">
-				    <small id="usernameHelp" class="form-text text-muted">You will see user's reminder list .</small>
-				  </div>			 
-				  <button type="submit" class="btn btn-outline-primary">Show</button>
-				</form>
-				<br><br>
-				<div class="row">
-				    <div class="col-sm">
-				      	<ul class="list-group" id="reminderList">	
-						</ul>
-					 	<template id="remidersListTemplate">
-							<li class="list-group-item">{{value}}</li>
-						</template>		
-						<template id="noRemindersFound">						
-							<div class="alert alert-primary" role="alert">{{value}}	</div>
-						</template>		
-				    </div>
-				    <div class="col-sm"></div>
-				    <div class="col-sm"></div>
-				
-			    </div>
-			</div>
+		<div class="container-fluid">
+			<div class="container">
+
+				<header>
+					<div class="row">
+						<div id="header-div-appName" class="col-10 align-bottom"><h2>@Reminders</h2></div>
+					</div>
+					<div class="row">
+						<div class="col-2 align-bottom">
+							<span id="span-add-reminder-symbol" data-toggle="modal" data-target="#newReminderModal" > + Add Reminder</span>
+						</div>
+						<div class="col-8 align-bottom"></div>
+						<div id="header-div-signUp" class="col-2 align-bottom" >
+							<span id="span-signUp">Sign up</span>
+							<span id="span-session-username"></span>
+						</div>
+					</div>
+					<hr>
+				</header>
+
+				<div id="main" class="text-center">
+					<!-- <div id="div-alert-user-created-successfully" class="alert alert-success" role="alert">
+							<strong>Welcome !</strong> Your account was successfully created.
+					</div> -->
+						<form id="form-authentication" class="form-signin">
+							<h5 class="h5 mb-3 font-weight-normal welcome-msg-new-users">Thank you for being part of @Reminders</h5>
+							<h3 class="h3 mb-3 font-weight-normal welcome-msg-new-users">please enter:</h3>
+							<input type="text" id="input-username" class="form-control" placeholder="Username" required autofocus>
+							<input type="email" id="input-email" class="form-control" placeholder="Email address" required >
+							<input type="password" id="input-password" class="form-control" placeholder="Password" required>
+							<div id="div-invalidUser">
+								<span id="span-invalidUser">* Invalid Info</span>
+							</div>
+							<button id="button-signIn" class="btn btn-outline-primary btn-block" type="submit">Sign in</button>
+							<button id="button-signUp" class="btn btn-outline-info btn-block" type="submit">Sign up</button>
+						</form>
+				</div>
+
+				<div id="div-reminders-panel">
 
 
-		</div>		
+					<!-- Register a new Reminder - Modal -->
+					<div class="modal fade" id="newReminderModal" tabindex="-1" role="dialog" aria-labelledby="newReminderModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="newReminderModalLabel">New Reminder</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <form>
+					          <div class="form-group">
+					            <label for="input-reminder-text" class="col-form-label">Reminder</label>
+											<input type="text" id="input-reminder-text" class="form-control" placeholder="Reminder Text" required autofocus>
+					          </div>
+					          <div class="form-group">
+					            <label for="input-reminder-date" class="col-form-label">Date</label>
+											<input type="date" id="input-reminder-date" class="form-control" placeholder="Date">
+					          </div>
+					        </form>
+					      </div>
+					      <div class="modal-footer">
+					        <button id="button-add-new-reminder-modal" type="button" class="btn btn-primary">Save</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+					<!-- Display remiders list  -->
+					<div class="row">
+							<div class="col-sm">
+									<ul class="list-group" id="reminderList">
+							</ul>
+							<template id="remidersListTemplate">
+								<li class="list-group-item">{{value}}</li>
+							</template>
+							<template id="noRemindersFound">
+								<div id="div-alert-noRemindersFound" class="alert alert-primary" role="alert">{{value}}	</div>
+							</template>
+							</div>
+							<div class="col-sm"></div>
+							<div class="col-sm"></div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
 
 	</body>
 
 
 
-	
-<script
-			  src="https://code.jquery.com/jquery-3.3.1.js"
-			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-			  crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"> </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sammy.js/0.7.6/sammy.min.js"> </script>
 	<script src="ReminderApp.js"></script>
+	<!-- <script src="sam.js"></script> -->
 </html>
