@@ -62,7 +62,8 @@ public class ReminderResource {
 	public void remove( @PathVariable("id") Integer id ) {
 		repository.deleteById(id);		
 	}
-		
+	
+	
 	@GetMapping("/{id}")
 	public Optional<Reminder> find(@PathVariable("id") Integer id) {
 		return repository.findById(id) ;
