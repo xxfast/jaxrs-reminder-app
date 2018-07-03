@@ -4,14 +4,13 @@ metadata:
   name: remindersdb
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 0.1Gi
+      storage: 1Gi
   storageClassName : standard
   volumeName: remindersdb
       #  selector:
       #    matchLabels:
       #      name: remindersdb
       #      app : reminders
-  

@@ -7,11 +7,10 @@ metadata:
     app: reminders
 spec:
   capacity:
-    storage: 0.1Gi
+    storage: 1Gi
   storageClassName: standard
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   gcePersistentDisk:
     pdName: remindersdb
     fsType: ext4
-
