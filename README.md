@@ -36,3 +36,8 @@ GET	http://localhost:9000/api/reminders-fetch-services/rest/reminders/{username}
 
 ```
 *** _c_ uses _a_ and _b_  .
+
+__Next Tasks__
+>Add persistent volume to database
+>Split CRUD operations into different services
+
