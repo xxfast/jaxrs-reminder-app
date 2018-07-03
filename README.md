@@ -13,7 +13,7 @@ __Current Stage :__
 
 *** **_user_** class was added in order to illustrate in the best possible way how this became another microservice as the **_reminder_** class 
 
-In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I'm going to upload the images to docker hub https://hub.docker.com/r/darknautic/micro-machines/ along with the config files .
+In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I'm going to upload the images to docker hub https://hub.docker.com/u/darknautic/ along with the config files .
 
 __ENDPOINTS__
 
