@@ -47,6 +47,8 @@ The initial aim was to wire all components and provide a working application, th
 >Add persistent volume to database
 >Split CRUD operations into different services
 >Add update/delete operations to front-end
+> Change static references in yaml files hostAliases
+> Connect reminder-ogm-mongo-service
 ...
 ..  * updating *
 .
