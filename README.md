@@ -44,11 +44,13 @@ __Next Steps / Pending Tasks__
 
 The initial aim was to wire all components and provide a working application, these next steps are all improvements and modifications needed to make the app better and fully featured.
 ```
->Add persistent volume to database
->Split CRUD operations into different services
->Add update/delete operations to front-end
+> Add persistent volume to database
+> Split CRUD operations into different services
+> Add update/delete operations to front-end
 > Change static references in yaml files hostAliases
 > Connect reminder-ogm-mongo-service
+> Improve authentication service ( redis back-end )
+> Add registry client to API gateway
 ...
 ..  * updating *
 .
