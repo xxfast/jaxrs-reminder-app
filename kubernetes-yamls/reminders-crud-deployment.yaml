@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reminders-crud-service
+  labels:
+    app: reminders
+    role: reminders-crud
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: reminders
+      role: reminders-crud
+  template:
+    metadata:
+      labels:
+        app: reminders
+        role: reminders-crud
+    spec:
+      hostAliases:
+        - ip: "10.98.143.186"
+          hostnames:
+            - "mysql-reminders"
+        - ip: "10.104.141.90"
+          hostnames:
+            - "reminders-registry-service"
+      containers:
+      - image: darknautic/reminders-mysql-service:v1
+        name: reminders-crud-service
+        ports:
+          - containerPort: 9010
+            name: reminders-crud
