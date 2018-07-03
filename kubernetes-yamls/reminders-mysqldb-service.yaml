@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reminders-mysqldb
+  labels:
+    app: reminders
+    role: db
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    app: reminders
+    role: db
