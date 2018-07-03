@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: remindersdb
+  labels:
+    name: remindersdb
+    app: reminders
+spec:
+  capacity:
+    storage: 0.1Gi
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: remindersdb
+    fsType: ext4
+

@@ -1,0 +1,17 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: remindersdb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 0.1Gi
+  storageClassName : standard
+  volumeName: remindersdb
+      #  selector:
+      #    matchLabels:
+      #      name: remindersdb
+      #      app : reminders
+  
