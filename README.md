@@ -12,7 +12,7 @@ __Original Architecture :__
 
 
 
-![alt text](https://docs.google.com/drawings/d/e/2PACX-1vSHKzAk5qj78vBnWZnIVQZ7KFNdbodZ-7QhqU-g61vLhKKPZlDNWm4Xw1gvgX3Nh58vj1DgfUwGcfGI/pub?w=960&h=720 "ReminderApp Original Arch")
+![alt text](https://docs.google.com/drawings/d/e/2PACX-1vSHKzAk5qj78vBnWZnIVQZ7KFNdbodZ-7QhqU-g61vLhKKPZlDNWm4Xw1gvgX3Nh58vj1DgfUwGcfGI/pub?w=291&h=114 "ReminderApp Original Arch")
 
 
 ---
