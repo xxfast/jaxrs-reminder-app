@@ -6,7 +6,7 @@ __Goal :__
 
 
 
-__Current Stage :__
+__Current__
 
 
 ![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTHsD495ma1D0OgdzN7dZ_J5ugf804SF7MTyzPe5772rwvmjRva_A-3HFqiKf29NzFtwMbiek8JxKJL/pub?w=1440&h=1080 "ReminderApp Arch")
@@ -16,6 +16,13 @@ __Current Stage :__
 
 
 In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I'm going to upload the images to docker hub https://hub.docker.com/u/darknautic/ along with the config files .
+
+
+
+__Objective__
+
+
+![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTFjetcpu1Bv-O78lz1aytjOGEP0MiPtZ8cwK4_d9U6CjOvIcf0C7k0gCXNFdb9SUFUwjBetpX8i9Rg/pub?w=1440&h=1080 "RemindersApp Micro Serv Arch")
 
 
 
