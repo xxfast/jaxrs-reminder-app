@@ -17,10 +17,11 @@ In the projects you will find a combination of Spring framework , JPA, OGM , spr
 
 
 
+---
 
 
 
-__ Set Up/Start Services__
+__Set Up & Start Services__
 ```
  kubectl create -f reminders-mysqldb-persistentVolume.yaml
  kubectl create -f reminders-mysqldb-persistentVolumeClaim.yaml
@@ -40,7 +41,7 @@ __ Set Up/Start Services__
 ```
 
 
-
+---
 
 
 
@@ -67,7 +68,7 @@ GET	http://localhost:9000/api/reminders-fetch-services/rest/reminders/{username}
 *** _c_ uses _a_ and _b_  .
 
 
-
+---
 
 
 __Next Steps / Pending Tasks__
