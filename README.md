@@ -5,9 +5,11 @@ __Goal :__
    Transform a monolithic application into a horizontally scalable microservice-oriented application.
 
 
+__Original Architecture :__
 
-__Current__
 
+__Current Architecture :__
+   (dev phase)
 
 ![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTHsD495ma1D0OgdzN7dZ_J5ugf804SF7MTyzPe5772rwvmjRva_A-3HFqiKf29NzFtwMbiek8JxKJL/pub?w=1440&h=1080 "ReminderApp Arch")
 
@@ -19,7 +21,7 @@ In the projects you will find a combination of Spring framework , JPA, OGM , spr
 
 
 
-__Objective__
+__Target Architecture__
 
 
 ![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTFjetcpu1Bv-O78lz1aytjOGEP0MiPtZ8cwK4_d9U6CjOvIcf0C7k0gCXNFdb9SUFUwjBetpX8i9Rg/pub?w=1440&h=1080 "RemindersApp Micro Serv Arch")
