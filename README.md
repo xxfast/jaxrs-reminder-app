@@ -109,9 +109,12 @@ The initial aim was to wire all components and provide a working application, th
 > Connect reminder-ogm-mongo-service
 > Improve authentication service ( redis back-end )
 > Add registry client to API gateway
-> Add DNS for service discovery 
 > Possible change from eureka to kube-proxy
 > Implement authentication service and remove it from users-service 
+> add session cache service 
+> upload API image to docker hub 
+> create deployment and service kubernetes config
+
 ...
 ..  * updating *
 .
