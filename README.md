@@ -15,6 +15,27 @@ __Current Stage :__
 
 In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I'm going to upload the images to docker hub https://hub.docker.com/u/darknautic/ along with the config files .
 
+
+__ Set Up/Start Services  __
+```
+ kubectl create -f reminders-mysqldb-persistentVolume.yaml
+ kubectl create -f reminders-mysqldb-persistentVolumeClaim.yaml
+ kubectl create -f reminders-mysqldb-deployment.yaml
+ kubectl create -f reminders-mysqldb-service.yaml
+ kubectl create -f reminders-registry-deployment.yaml
+ kubectl create -f reminders-registry-service.yaml
+ kubectl create -f reminders-crud-deployment.yaml
+ kubectl create -f users-crud-deployment.yaml
+ kubectl create -f reminders-crud-service.yaml
+ kubectl create -f users-crud-service.yaml
+ kubectl create -f reminders-fetch-deployment.yaml
+ kubectl create -f reminders-fetch-service.yaml
+ kubectl create -f api-deployment.yaml 
+ kubectl create -f api-service.yaml
+ 
+```
+
+
 __ENDPOINTS__
 
 ```
@@ -39,6 +60,8 @@ GET	http://localhost:9000/api/reminders-fetch-services/rest/reminders/{username}
 
 
 
+
+
 __Next Steps / Pending Tasks__
 
 
@@ -58,3 +81,6 @@ The initial aim was to wire all components and provide a working application, th
 ..  * updating *
 .
 ```
+
+
+
