@@ -16,7 +16,8 @@ __Current Stage :__
 In the projects you will find a combination of Spring framework , JPA, OGM , spring data ,Mockito , Junit,  SLF4J ,Eureka, Zuul , etc  and in order to make it a turn-key solution I'm going to upload the images to docker hub https://hub.docker.com/u/darknautic/ along with the config files .
 
 
-__ Set Up/Start Services  __
+<br>
+__ Set Up/Start Services__
 ```
  kubectl create -f reminders-mysqldb-persistentVolume.yaml
  kubectl create -f reminders-mysqldb-persistentVolumeClaim.yaml
@@ -36,6 +37,7 @@ __ Set Up/Start Services  __
 ```
 
 
+<br>
 __ENDPOINTS__
 
 ```
