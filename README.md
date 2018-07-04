@@ -19,7 +19,7 @@ __Original Architecture :__
 
 
 __Current Architecture :__
-   (dev phase)
+   
 
 ![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTHsD495ma1D0OgdzN7dZ_J5ugf804SF7MTyzPe5772rwvmjRva_A-3HFqiKf29NzFtwMbiek8JxKJL/pub?w=1440&h=1080 "ReminderApp Arch")
 
