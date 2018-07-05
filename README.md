@@ -107,13 +107,13 @@ The initial aim was to wire all components and provide a working application, th
 > Add update/delete operations to front-end
 > Change static references in yaml files hostAliases
 > Connect reminder-ogm-mongo-service
-> Improve authentication service ( redis back-end )
+> Improve authentication service 
 > Add registry client to API gateway
 > Possible change from eureka to kube-proxy
 > Implement authentication service and remove it from users-service 
 > add session cache service 
 > upload API image to docker hub 
-> create deployment and service kubernetes config
+> create API deployment and service kubernetes config
 
 ...
 ..  * updating *
