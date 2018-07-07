@@ -19,7 +19,7 @@ __Original Architecture :__
 
 
 __Current Architecture :__
-   
+
 
 ![alt text](https://docs.google.com/drawings/d/e/2PACX-1vTHsD495ma1D0OgdzN7dZ_J5ugf804SF7MTyzPe5772rwvmjRva_A-3HFqiKf29NzFtwMbiek8JxKJL/pub?w=1440&h=1080 "ReminderApp Arch")
 
@@ -61,9 +61,9 @@ __Set Up & Start Services__
  kubectl create -f users-crud-service.yaml
  kubectl create -f reminders-fetch-deployment.yaml
  kubectl create -f reminders-fetch-service.yaml
- kubectl create -f api-deployment.yaml 
+ kubectl create -f api-deployment.yaml
  kubectl create -f api-service.yaml
- 
+
 ```
 
 
@@ -107,18 +107,16 @@ The initial aim was to wire all components and provide a working application, th
 > Add update/delete operations to front-end
 > Change static references in yaml files hostAliases
 > Connect reminder-ogm-mongo-service
-> Improve authentication service 
+> Improve authentication service
 > Add registry client to API gateway
 > Possible change from eureka to kube-proxy
-> Implement authentication service and remove it from users-service 
-> add session cache service 
-> upload API image to docker hub 
+> Implement authentication service and remove it from users-service
+> Add session cache service
+> Upload API image to docker hub
 > create API deployment and service kubernetes config
+> Add liveness and readiness to pod settings
 
 ...
 ..  * updating *
 .
 ```
-
-
-
