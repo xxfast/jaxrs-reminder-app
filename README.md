@@ -115,6 +115,7 @@ The initial aim was to wire all components and provide a working application, th
 > Upload API image to docker hub
 > create API deployment and service kubernetes config
 > Add liveness and readiness to pod settings
+> set the app up in GCP
 
 ...
 ..  * updating *
