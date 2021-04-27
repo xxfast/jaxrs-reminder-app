@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reminders-fetch-service
+  labels:
+    app: reminders
+    role: reminders-fetch
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: reminders
+      role: reminders-fetch
+  template:
+    metadata:
+      labels:
+        app: reminders
+        role: reminders-fetch
+    spec:
+      hostAliases:
+        - ip: "10.98.143.186"
+          hostnames:
+            - "mysql-reminders"
+        - ip: "10.104.141.90"
+          hostnames:
+            - "reminders-registry-service"
+      containers:
+      - image: darknautic/reminders-list-service:v1
+        name: reminders-fetch-service
+        ports:
+          - containerPort: 9012
+            name: reminders-fetch

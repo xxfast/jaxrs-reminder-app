@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: users-crud-service
+  labels:
+    app: users
+    role: users-crud
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: users
+      role: users-crud
+  template:
+    metadata:
+      labels:
+        app: users
+        role: users-crud
+    spec:
+      hostAliases:
+        - ip: "10.98.143.186"
+          hostnames:
+            - "mysql-reminders"
+        - ip: "10.104.141.90"
+          hostnames:
+            - "reminders-registry-service"
+      containers:
+      - image: darknautic/reminders-users-service:v1
+        name: users-crud-service
+        ports:
+          - containerPort: 9011
+            name: users-crud

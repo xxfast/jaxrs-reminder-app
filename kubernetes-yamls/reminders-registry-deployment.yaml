@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry-deployment
+  labels:
+    app: reminders
+    role: registry
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: reminders
+      role: registry
+  template:
+    metadata:
+      labels:
+        app: reminders
+        role: registry
+    spec:
+      containers:
+      - image: darknautic/reminders-registry-service:v1
+        name: registry-pod
+        ports:
+          - containerPort: 8761
+            name: registry-port

@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reminders-mysqldb
+  labels:
+    app: reminders
+    role: db
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: reminders
+      role: db
+  template:
+    metadata:
+      labels:
+        app: reminders
+        role: db
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
+        ports:
+          - containerPort: 3306
+            name: mysql
+        env:
+          - name: MYSQL_DATABASE
+            value: remindersdb
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "true"
+        #volumeMounts:
+        #  - mountPath: /var/lib/mysql
+        #    subPath: data
+        #    name: "remindersdb"
+      #volumes:
+      #  - name: remindersdb
+      #    persistentVolumeClaim:
+      #      claimName: remindersdb

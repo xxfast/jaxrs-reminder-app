@@ -1,0 +1,17 @@
+server:
+  port: 9000
+  
+zuul: 
+  prefix: /api
+  routes:
+    reminders-db-services: 
+      path: /reminders-db-services/**
+      url: http://localhost:9010/    
+    users-db-services: 
+      path: /users-db-services/**
+      url: http://localhost:9011/
+    reminders-fetch-services: 
+      path: /reminders-fetch-services/**
+      url: http://localhost:9012/    
+    
+    

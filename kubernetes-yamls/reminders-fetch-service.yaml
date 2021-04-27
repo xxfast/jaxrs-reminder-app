@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reminders-fetch-service
+  labels:
+    app: reminders
+    role: reminders-fetch
+spec:
+  #type: LoadBalancer
+  type: ClusterIP
+  ports:
+    - port: 9012
+      targetPort: 9012
+      protocol: TCP
+      name: r-crud-port
+  selector:
+    app: reminders
+    role: reminders-fetch
