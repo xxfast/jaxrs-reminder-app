@@ -1,0 +1,5 @@
+rootProject.name = 'jaxrs-reminder-app'
+include 'jaxrs-reminder-core'
+include 'jaxrs-reminder-create'
+include 'jaxrs-reminder-query'
+
