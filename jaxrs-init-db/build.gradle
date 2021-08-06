@@ -1,0 +1,22 @@
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+
+task buildDocker() {
+    if (!project.hasProperty("dockerRepo")) {
+        project.ext.dockerRepo = "localhost"
+        println "The property `dockerRepo` was not found in the project/environment, using '${dockerRepo}' as fallback"
+    }
+
+    if (!project.hasProperty("containerName")) {
+        project.ext.containerName = "${project.name}"
+    }
+
+
+    doFirst {
+        copy {
+            from "src"
+            into stageDir
+        }
+    }
+}
