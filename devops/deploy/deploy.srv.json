@@ -1,0 +1,4 @@
+{"container": {
+  "type": "DOCKER",
+  "docker": {"image": "registry/jaxrs-reminder-app:1.0.0"}
+}}

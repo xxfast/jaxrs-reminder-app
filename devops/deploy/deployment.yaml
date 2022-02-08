@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jaxrs-reminder-app
+  name: jaxrs-reminder-app
+  namespace: jaxrs-reminder
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: jaxrs-reminder-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 5
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: jaxrs-reminder-app
+    spec:
+      containers:
+        - name: jaxrs-reminder-app
+          image: registry/jaxrs-reminder-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            initialDelaySeconds: 120
+            timeoutSeconds: 1
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9000
+            initialDelaySeconds: 120
+            timeoutSeconds: 1
+            periodSeconds: 15
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 640m
+              memory: 2048Mi
+            requests:
+              cpu: 640m
+              memory: 2048Mi
