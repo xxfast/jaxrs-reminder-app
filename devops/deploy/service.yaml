@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: jaxrs-reminder-app
+  name: jaxrs-reminder-app
+  namespace: jaxrs-reminder
+spec:
+  ports:
+    - port: 80
+      targetPort: 9000
+      name: web
+  sessionAffinity: ClientIP
+  selector:
+    app: jaxrs-reminder-app

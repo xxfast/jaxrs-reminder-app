@@ -1,0 +1,33 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: jaxrs-reminder-app
+  namespace: jaxrs-reminder
+  annotations:
+    kubernetes.io/ingress.class: traefik-internal
+spec:
+  tls:
+  - hosts:
+    - jaxrs-reminder
+    secretName: jaxrs-reminder
+  rules:
+  - host: jaxrs-reminder.k8s
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jaxrs-reminder-app
+            port:
+              number: 80
+  - host: jaxrs-reminder
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jaxrs-reminder-app
+            port:
+              number: 80
