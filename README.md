@@ -13,3 +13,9 @@ Run `mvn clean test` to run the unit tests.<br>
 
 ## Swagger
 http://localhost:8080/swagger-ui.html#
+
+## Next Steps
+
+  - Implements more tests(Unit and Integration)
+  - Implements Security API - SpringSecurity
+ 
