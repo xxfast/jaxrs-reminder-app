@@ -1,20 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-nbproject/private/
-build/
-nbbuild/
+# Distribution / packaging
+.Python
+develop-eggs/
 dist/
-nbdist/
-.nb-gradle/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+# Environments
+.env*
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
-!/.mvn/wrapper/maven-wrapper.jar
+# Testing
+.pytest_cache
+
+# Visual Studio Code
+.vscode/
+.flaskenv
+*.code-workspace
