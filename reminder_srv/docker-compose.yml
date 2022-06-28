@@ -1,0 +1,23 @@
+services:
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.api
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html
+
+  db:
+    image: mongo:5.0.9
+    ports:
+      - 27017:27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example      

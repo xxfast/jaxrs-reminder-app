@@ -1,0 +1,21 @@
+FROM python:3.10.5-slim
+
+RUN adduser reminder_srv
+
+WORKDIR /home/reminder_srv
+
+COPY ../requirements.txt requirements.txt
+COPY ../app.py app.py
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN pip install gunicorn
+
+COPY ../reminder reminder
+COPY ../boot_web.sh ./
+RUN chmod +x boot_web.sh
+
+RUN chown -R reminder_srv:reminder_srv ./
+USER reminder_srv
+
+ENTRYPOINT ["./boot_web.sh"]
+
