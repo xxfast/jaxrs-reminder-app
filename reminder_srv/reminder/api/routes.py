@@ -1,30 +1,46 @@
-from flask import jsonify
+import logging
+from flask import jsonify, request, abort
 
-from . import bp
+from . import bp, model
 
 @bp.route("/", methods=['POST'])
 def post_item():
-    # TODO verify wrong id
-    
-    return jsonify( { 'id': '1' } )
+    req_data = request.json
 
-@bp.route("/<int:id>", methods=['GET'])
+    content = req_data.get('content', None)
+    if not content:
+        abort(400)
+
+    id = model.save_reminder(content)
+
+    return jsonify( { 'id': id } )
+
+@bp.route("/<id>", methods=['GET'])
 def get_item(id):
-    # TODO verify wrong id
+    reminder = model.read_reminder(id)
 
-    data = 'TODO: Get data from DB'
+    # verify wrong id
+    if not reminder:
+        abort(404)
 
-    return jsonify( { 'data': data } )
+    return jsonify( { 'content': reminder.content } )
 
-@bp.route("/<int:id>", methods=['PUT'])
+@bp.route("/<id>", methods=['PUT'])
 def put_item(id):
-    # TODO verify wrong id
+    req_data = request.json
+
+    content = req_data.get('content', None)
+    if not content:
+        abort(400)
+
+    if not model.edit_reminder(id, content):
+        abort(404)
 
     return jsonify( {} )
 
-@bp.route("/<int:id>", methods=['DELETE'])
+@bp.route("/<id>", methods=['DELETE'])
 def delete_item(id):
-    # TODO verify wrong id
+    if not model.delete_reminder(id):
+        abort(404)
 
     return jsonify( {} )
-

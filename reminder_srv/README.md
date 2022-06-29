@@ -15,20 +15,10 @@
 
 `$ pytest`
 
-## Build API docker image
-
-`$ docker build -f dockerfiles/Dockerfile.api -t reminder_srv .`
-
-## Run API docker image
-
-`$ docker run -p 127.0.0.1:8080:80 reminder_srv`
-
-Try API on localhost:8080
-
-## Build API + DB docker images
+## Build docker images
 
 `$ docker-compose build`
 
-## Run API + DB docker images
+## Run docker images
 
 `$ docker-compose up`

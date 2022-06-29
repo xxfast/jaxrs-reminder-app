@@ -1,12 +1,13 @@
 import pytest
 from reminder import create_app
+from reminder.config import TestConfig
 
 @pytest.fixture()
 def app():
-    app = create_app()
-    app.config.update({
-        "TESTING": True,
-    })
+    app = create_app(TestConfig)
+    # app.config.update({
+    #     "TESTING": True,
+    # })
 
     # other setup can go here
 
