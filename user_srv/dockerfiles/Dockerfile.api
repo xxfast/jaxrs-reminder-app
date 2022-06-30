@@ -1,8 +1,8 @@
 FROM python:3.10.5-slim
 
-RUN adduser reminder_srv
+RUN adduser user_srv
 
-WORKDIR /home/reminder_srv
+WORKDIR /home/user_srv
 
 COPY ../requirements.txt requirements.txt
 COPY ../app.py app.py
@@ -10,12 +10,12 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
-COPY ../reminder reminder
+COPY ../user user
 COPY ../boot_api.sh ./
 RUN chmod +x boot_api.sh
 
-RUN chown -R reminder_srv:reminder_srv ./
-USER reminder_srv
+RUN chown -R user_srv:user_srv ./
+USER user_srv
 
 ENTRYPOINT ["./boot_api.sh"]
 

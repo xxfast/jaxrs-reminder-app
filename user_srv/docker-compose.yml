@@ -1,7 +1,7 @@
 services:
 
-  reminder_api:
-    container_name: reminder_api
+  user_api:
+    container_name: user_api
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.api
@@ -10,13 +10,14 @@ services:
       - 8080:80
     restart: unless-stopped
     depends_on:
-      - reminder_db
+      - user_db
 
-  reminder_db:
-    image: mongo:5.0.9
+  user_db:
+    image: postgres:14.4
     ports:
-      - 27017:27017
+      - "5432:5432"
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example      
+      POSTGRES_DB: User_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
