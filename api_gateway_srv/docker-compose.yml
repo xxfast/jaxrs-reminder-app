@@ -1,0 +1,11 @@
+services:
+
+  gateway_api:
+    container_name: gateway_api
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: .env
+    ports:
+      - 8080:80
+    restart: unless-stopped

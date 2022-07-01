@@ -24,7 +24,7 @@ def post_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify( {} )
+    return jsonify( {'username':user.username} )
 
 @bp.route("/<username>", methods=['PUT'])
 def edit_user(username):
@@ -48,7 +48,7 @@ def login_user(username):
 
     return jsonify( {} )
 
-@bp.route("/<username>/reminders", methods=['POST'])
+@bp.route("/<username>/reminder", methods=['POST'])
 def add_reminder(username):
     reminder_id = request.json['reminder']
 
@@ -65,7 +65,7 @@ def add_reminder(username):
 
     return jsonify( {'reminders':user.get_reminders_id_list()} )
 
-@bp.route("/<username>/reminders", methods=['GET'])
+@bp.route("/<username>/reminder", methods=['GET'])
 def get_reminders(username):
     user = model.User.query.filter_by(username=username).first()
     if not user:
@@ -73,7 +73,7 @@ def get_reminders(username):
 
     return jsonify( {'reminders':user.get_reminders_id_list()} )
 
-@bp.route("/<username>/reminders/<reminder_id>", methods=['DELETE'])
+@bp.route("/<username>/reminder/<reminder_id>", methods=['DELETE'])
 def delete_reminder(username, reminder_id):
     user = model.User.query.filter_by(username=username).first()
     if not user:

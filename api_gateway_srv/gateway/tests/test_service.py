@@ -1,3 +1,4 @@
+"""
 def get_user(client, username):
     return client.get('/' + username)
 
@@ -11,13 +12,13 @@ def login_user(client, username, password):
     return client.post('/' + username + '/login', json={"password":password})
 
 def post_reminder(client, username, reminder):
-    return client.post('/' + username + '/reminder', json={"reminder":reminder})
+    return client.post('/' + username + '/reminders', json={"reminder":reminder})
 
 def get_reminders(client, username):
-    return client.get('/' + username + '/reminder')
+    return client.get('/' + username + '/reminders')
 
 def delete_reminder(client, username, reminder):
-    return client.delete('/' + username + '/reminder/' + reminder)
+    return client.delete('/' + username + '/reminders/' + reminder)
 
 
 def test_post_new_user(client):
@@ -161,3 +162,4 @@ def test_wrong_user(client):
     # Delete reminder
     response = delete_reminder(client, fake_user, "fake_reminder_id")
     assert response.status_code == 404
+"""

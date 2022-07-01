@@ -1,8 +1,8 @@
 FROM python:3.10.5-slim
 
-RUN adduser user_srv
+RUN adduser gateway_srv
 
-WORKDIR /home/user_srv
+WORKDIR /home/gateway_srv
 
 COPY ../requirements.txt requirements.txt
 COPY ../app.py app.py
@@ -14,7 +14,8 @@ COPY ../user user
 COPY ../boot_api.sh ./
 RUN chmod +x boot_api.sh
 
-RUN chown -R user_srv:user_srv ./
-USER user_srv
+RUN chown -R gateway_srv:gateway_srv ./
+USER gateway_srv
 
 ENTRYPOINT ["./boot_api.sh"]
+
