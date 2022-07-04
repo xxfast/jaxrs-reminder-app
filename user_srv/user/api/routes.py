@@ -24,7 +24,7 @@ def post_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify( {'username':user.username} )
+    return jsonify( {'username':new_user.username} )
 
 @bp.route("/<username>", methods=['PUT'])
 def edit_user(username):
@@ -79,7 +79,7 @@ def delete_reminder(username, reminder_id):
     if not user:
         abort(404)
 
-    reminder = model.Reminder.query.filter_by(id=reminder_id).first()
+    reminder = model.Reminder.query.filter_by(id=reminder_id, user_id=user.id).first()
     if not reminder:
         abort(400)
 

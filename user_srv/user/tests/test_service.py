@@ -96,7 +96,6 @@ def test_add_reminder(client):
     # Add new reminder
     reminder_id_1 = "id_1"
     response = post_reminder(client, username, reminder_id_1)
-    print("aaaaaaaaa - " + str(response.json) )
     assert response.status_code == 200
     assert len( response.json["reminders"]) == 1
     assert reminder_id_1 in response.json["reminders"]
@@ -133,6 +132,25 @@ def test_delete_reminder(client):
 
     # Reject Delete twice
     response = delete_reminder(client, username, reminder_id)
+    assert response.status_code == 400
+
+def test_delete_reminder_from_other_user(client):
+    # Add 2 users
+    username_1 = "new_user_6"
+    response = post_user(client, username_1, "1234")
+    assert response.status_code == 200
+    username_2 = "new_user_7"
+    response = post_user(client, username_2, "1234")
+    assert response.status_code == 200
+
+    # Add new reminder to first user
+    reminder_id = "id_1"
+    response = post_reminder(client, username_1, reminder_id)
+    assert response.status_code == 200
+    assert len( response.json["reminders"]) == 1
+
+    # Delete reminder from second user
+    response = delete_reminder(client, username_2, reminder_id)
     assert response.status_code == 400
 
 def test_wrong_user(client):
