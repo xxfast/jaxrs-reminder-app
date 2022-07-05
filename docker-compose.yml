@@ -49,9 +49,20 @@ services:
   user_db:
     image: postgres:14.4
     ports:
-      - 5432:5432
+      - 5432
     restart: always
     environment:
       POSTGRES_DB: User_DB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
+  swagger_ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8080
+    environment:
+      SWAGGER_JSON: /home/swagger-config.yaml
+    volumes:
+      - ./swagger_ui:/home
+    depends_on:
+      - gateway_api

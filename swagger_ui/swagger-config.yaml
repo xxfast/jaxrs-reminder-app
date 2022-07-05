@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: Reminders
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:8080
+  variables: {}
+paths:
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Login
+      operationId: Login
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              username: user
+              password: '1234'
+        required: true
+      security: []
+      responses:
+        '200':
+          description:
+            Successfully authenticated.
+            The session ID is returned in a cookie named `access_token_cookie`. You need to include this cookie in subsequent requests.
+          headers:
+            Set-Cookie:
+              schema: 
+                type: string
+                example: access_token_cookie=abcde12345; Path=/; Secure; HttpOnly;
+      deprecated: false
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout
+      operationId: Logout
+      security:
+        - cookieAuth: []      
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reminder:
+    get:
+      tags:
+      - Reminder
+      summary: Get reminders
+      operationId: Getreminders
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Reminder
+      summary: Post reminder
+      operationId: Postreminder
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReminderRequest'
+            example:
+              content: Test data 1
+        required: true
+      security:
+        - cookieAuth: []        
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reminder/id:
+    put:
+      tags:
+      - Reminder
+      summary: Put reminder
+      operationId: Putreminder
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutReminderRequest'
+            example:
+              content: Test data 222
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Reminder
+      summary: Delete reminder
+      operationId: Deletereminder
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: seba
+        password: '1234'
+    PostReminderRequest:
+      title: PostReminderRequest
+      required:
+      - content
+      type: object
+      properties:
+        content:
+          type: string
+      example:
+        content: Test data content
+    PutReminderRequest:
+      title: PutReminderRequest
+      required:
+      - content
+      type: object
+      properties:
+        content:
+          type: string
+      example:
+        content: Edited data content
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: access_token_cookie        
+tags:
+- name: User
+  description: 'User resource'
+- name: Reminder
+  description: 'Reminder resource'
+  
