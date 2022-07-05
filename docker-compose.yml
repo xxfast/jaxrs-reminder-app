@@ -1,0 +1,57 @@
+services:
+
+  gateway_api:
+    container_name: gateway_api
+    build:
+      context: ./api_gateway_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./api_gateway_srv/.env
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    depends_on:
+      - reminder_api
+      - user_api
+
+  reminder_api:
+    container_name: reminder_api
+    build:
+      context: ./reminder_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./reminder_srv/.env
+    expose:
+      - 80
+    restart: unless-stopped
+    depends_on:
+      - reminder_db
+
+  reminder_db:
+    image: mongo:5.0.9
+    expose:
+      - 27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example      
+
+  user_api:
+    container_name: user_api
+    build:
+      context: ./user_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./user_srv/.env
+    expose:
+      - 80
+    restart: unless-stopped
+    depends_on:
+      - user_db
+
+  user_db:
+    image: postgres:14.4
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: User_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

@@ -11,7 +11,7 @@ def login_user(client, username, password):
     return client.post('/' + username + '/login', json={"password":password})
 
 def post_reminder(client, username, reminder):
-    return client.post('/' + username + '/reminder', json={"reminder":reminder})
+    return client.post('/' + username + '/reminder', json={"reminder_id":reminder})
 
 def get_reminders(client, username):
     return client.get('/' + username + '/reminder')

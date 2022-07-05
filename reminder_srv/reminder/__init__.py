@@ -1,4 +1,5 @@
 from flask import Flask
+import logging
 from mongoengine import connect
 
 from reminder.config import Config
@@ -6,6 +7,14 @@ from reminder.config import Config
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+
+    app.logger.error('a - ' + str(app.config['MONGODB_DB']))
+    app.logger.error('b - ' + str(app.config['MONGODB_HOST']))
+    app.logger.error('c - ' + str(app.config['MONGODB_PORT']))
 
     connect(
             db=app.config['MONGODB_DB'],

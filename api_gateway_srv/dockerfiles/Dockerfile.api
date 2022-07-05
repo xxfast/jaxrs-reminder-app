@@ -10,7 +10,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
-COPY ../user user
+COPY ../gateway gateway
 COPY ../boot_api.sh ./
 RUN chmod +x boot_api.sh
 
