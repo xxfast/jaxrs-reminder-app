@@ -72,9 +72,9 @@ def post_reminders():
 def edit_reminders(reminder_id):
     content = request.json['content']
 
-    reminder_id = controller.put_reminder(current_user, reminder_id, content)
-    if not reminder_id:
-        abort(400)
+    status_code, reminder_id = controller.put_reminder(current_user, reminder_id, content)
+    if status_code != 200:
+        abort(status_code)
 
     return jsonify( {'id': reminder_id} )
 
@@ -82,8 +82,8 @@ def edit_reminders(reminder_id):
 @jwt_required()
 def delete_reminders(reminder_id):
 
-    result = controller.delete_reminder(current_user, reminder_id)
-    if not result:
-        abort(404)
+    status_code = controller.delete_reminder(current_user, reminder_id)
+    if status_code != 200:
+        abort(status_code)
 
     return jsonify( {} )

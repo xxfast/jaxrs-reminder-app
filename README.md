@@ -18,7 +18,7 @@ TODO
 
 ## API Documentation
 
-TODO
+There is a Swagger UI available in http://localhost/doc/
 
 ## Next steps
 

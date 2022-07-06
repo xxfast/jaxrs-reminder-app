@@ -1,13 +1,24 @@
 services:
 
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./dockerfiles/Dockerfile.frontend
+    ports:
+      - 80:80
+    depends_on:
+      - gateway_api
+      - swagger_ui
+
   gateway_api:
     container_name: gateway_api
     build:
       context: ./api_gateway_srv
       dockerfile: ./dockerfiles/Dockerfile.api
     env_file: ./api_gateway_srv/.env
-    ports:
-      - 8080:80
+    expose:
+      - 80
     restart: unless-stopped
     depends_on:
       - reminder_api
@@ -48,7 +59,7 @@ services:
 
   user_db:
     image: postgres:14.4
-    ports:
+    expose:
       - 5432
     restart: always
     environment:
@@ -58,7 +69,7 @@ services:
 
   swagger_ui:
     image: swaggerapi/swagger-ui
-    ports:
+    expose:
       - 8080
     environment:
       SWAGGER_JSON: /home/swagger-config.yaml

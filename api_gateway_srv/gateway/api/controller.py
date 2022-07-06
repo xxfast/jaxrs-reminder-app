@@ -57,14 +57,14 @@ def put_reminder(username, id, content):
     # Verify reminder is in user list
     reminders_list = user_srv.get_reminders(username)
     if not (id in reminders_list):
-        return None
+        return (404, None)
 
     # PUT reminders
     id = reminder_srv.put_reminder(id, content)
     if not id:
-        return None
+        return (400, None)
 
-    return id        
+    return (200, id)
 
 def delete_reminder(username, reminder_id):
     user_srv = user_service()
@@ -73,9 +73,9 @@ def delete_reminder(username, reminder_id):
     # DELETE reminder from user (if reminder doesn't belongs to user request will be rejected)
     result = user_srv.delete_reminder(username, reminder_id)
     if not result:
-        return False
+        return 404
 
     # DELETE reminder (on error ignore orphan reminders, reference has been removed from user)
     reminder_srv.delete_reminder(reminder_id)
 
-    return True
+    return 200

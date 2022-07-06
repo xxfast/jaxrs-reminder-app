@@ -12,10 +12,6 @@ def create_app(config_class=Config):
     app.logger.handlers = gunicorn_logger.handlers
     app.logger.setLevel(gunicorn_logger.level)
 
-    app.logger.error('a - ' + str(app.config['MONGODB_DB']))
-    app.logger.error('b - ' + str(app.config['MONGODB_HOST']))
-    app.logger.error('c - ' + str(app.config['MONGODB_PORT']))
-
     connect(
             db=app.config['MONGODB_DB'],
             host=app.config['MONGODB_HOST'],
