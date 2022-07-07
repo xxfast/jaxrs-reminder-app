@@ -22,4 +22,15 @@ There is a Swagger UI available in http://localhost/doc/
 
 ## Next steps
 
-TODO
+### Non functional enhancements
+
+* Change communication between microservices to gRPC
+
+### Technical Debt
+
+* Try to parse swagger-config.yaml from api_gateway source code to ease maintenance
+
+### New features
+
+* Add user registry UI and API
+* Add reminders due date, alarms, notifications, completed

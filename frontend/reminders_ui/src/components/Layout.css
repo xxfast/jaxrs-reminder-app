@@ -1,0 +1,98 @@
+.App {
+  background-color: #2e2e2e;
+  display: grid;
+  grid-template-columns: 200px auto 300px;
+  grid-template-rows: 50px auto 50px;   
+  grid-template-areas: 
+  'header header header'
+  'menu main aside'
+  'footer footer footer';
+}
+
+.App-header {
+  grid-area: header; 
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.App-logo {
+  height: 100%;
+  margin: 5px;
+}
+
+.App-header-item {
+  align-self: center;
+}
+
+.App-header-user {
+  align-self: center;
+  margin: 10px;
+  display: inline-block;
+}
+
+.App-header-user > * {
+  vertical-align:middle;
+  margin: 5px;
+}
+
+.App-menu {
+  grid-area: menu;
+  background-color: lightgray;
+  border: 5px;
+  border-radius: 5px;
+  margin: 10px;
+  margin-right: 5px;
+  box-shadow: 3px 3px gray;
+}
+
+.App-menu ul {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 0px;
+}
+
+.App-menu ul li {
+  list-style: none;
+  margin: 10px;
+  border-radius: 3px;
+  background-color: aqua;
+  text-align: center;
+}
+
+.App-menu ul li button {
+  width: 100%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.App-main {
+  min-height: calc(100vh - 130px);
+  grid-area: main; 
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  margin-left: 5px;
+  padding: 5px;
+  box-shadow: 3px 3px gray;
+}
+
+.App-side {
+  grid-area: aside;
+  background-color: lightgray;
+  border: 5px;
+  border-radius: 5px;
+  margin: 10px;
+  margin-right: 5px;
+  box-shadow: 3px 3px gray;
+}
+
+.App-footer {
+  grid-area: footer; 
+  background-color: black;
+  color: white;
+  display: flex;
+}
