@@ -20,6 +20,16 @@ def user_lookup_callback(_jwt_header, jwt_data):
     return jwt_data["sub"]
 
 
+@bp.route("/user", methods=['GET'])
+@jwt_required(optional=True)
+def get_user():
+    # If user microservice would have more user useful info, it should call it to add it to this response
+    username = ''
+    if current_user:
+        username = str(current_user)
+
+    return jsonify( {"username":username} )
+
 @bp.route("/user/login", methods=['POST'])
 def login_user():
     username = request.json['username']

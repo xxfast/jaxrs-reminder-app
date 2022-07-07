@@ -9,6 +9,23 @@ servers:
 - url: http://localhost/api
 
 paths:
+  /user:
+    get:
+      tags:
+      - User
+      summary: Get logged in user
+      description: >
+        Get actual logged in user.
+      operationId: GetUser
+      responses:
+        '200':
+          description:
+            Logged user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+      deprecated: false
   /user/login:
     post:
       tags:
@@ -175,6 +192,18 @@ paths:
 
 components:
   schemas:
+    UserInfo:
+      title: UserInfo
+      description:
+        Logged user information
+      required:
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+      example:
+        username: user
     LoginRequest:
       title: LoginRequest
       description:
