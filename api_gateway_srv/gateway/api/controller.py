@@ -1,20 +1,21 @@
-from .microservices_api import user_service, reminder_service
+from .microservices_api import APIERROR, user_service, reminder_service
 
 def login_user(username, password):
     user_srv = user_service()
 
-    # Get user 
-    response = user_srv.get_user(username)
-    if not response:
-        # If doesn't exist => register user
-        if not user_srv.add_user(username, password):
-            return False
+    # Get user
+    try:
+        user_srv.get_user(username)
+    except APIERROR as ex:
+        if ex.error_code == 404:
+            # If doesn't exist => register user
+            user_srv.add_user(username, password)
+        else:
+            raise
     else:
-        # If exist => verificar credenciales
-        if not user_srv.verify_user(username, password):
-            return False
-    
-    return True
+        user_srv.verify_user(username, password)
+
+    return
 
 def get_reminders(username):
     user_srv = user_service()
@@ -41,12 +42,9 @@ def post_reminder(username, content):
 
     # POST reminders
     id = reminder_srv.post_reminder(content)
-    if not id:
-        return None
 
     # POST reminders in user
-    if not user_srv.post_reminder(username, id):
-        return None
+    user_srv.post_reminder(username, id)
 
     return id
 
@@ -57,25 +55,21 @@ def put_reminder(username, id, content):
     # Verify reminder is in user list
     reminders_list = user_srv.get_reminders(username)
     if not (id in reminders_list):
-        return (404, None)
+        raise APIERROR(404)
 
     # PUT reminders
-    id = reminder_srv.put_reminder(id, content)
-    if not id:
-        return (400, None)
+    reminder_srv.put_reminder(id, content)
 
-    return (200, id)
+    return
 
 def delete_reminder(username, reminder_id):
     user_srv = user_service()
     reminder_srv = reminder_service()
 
     # DELETE reminder from user (if reminder doesn't belongs to user request will be rejected)
-    result = user_srv.delete_reminder(username, reminder_id)
-    if not result:
-        return 404
+    user_srv.delete_reminder(username, reminder_id)
 
     # DELETE reminder (on error ignore orphan reminders, reference has been removed from user)
     reminder_srv.delete_reminder(reminder_id)
 
-    return 200
+    return

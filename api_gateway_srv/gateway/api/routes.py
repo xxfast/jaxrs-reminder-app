@@ -2,6 +2,7 @@ from flask import jsonify, request, abort
 from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, unset_jwt_cookies, current_user
 
 from . import bp, controller
+from .microservices_api import APIERROR
 from gateway import jwt
 
 # Register a callback function that takes whatever object is passed in as the
@@ -36,7 +37,10 @@ def login_user():
     password = request.json['password']
 
     # Check login user 
-    if not controller.login_user(username, password):
+    try:
+        controller.login_user(username, password)
+    except APIERROR as ex:
+        # Force 401 error to show that user could not be authenticated without any details
         abort(401)
 
     # Create token (with username) & set cookie 
@@ -61,8 +65,11 @@ def logout_user():
 @jwt_required()
 def get_reminders():
 
-    # Get reminders from user
-    result = controller.get_reminders(current_user)
+    try:
+        # Get reminders from user
+        result = controller.get_reminders(current_user)
+    except APIERROR as ex:
+        abort(ex.error_code)
 
     return jsonify( {"reminders":result} )
 
@@ -71,9 +78,10 @@ def get_reminders():
 def post_reminders():
     content = request.json['content']
 
-    reminder_id = controller.post_reminder(current_user, content)
-    if not reminder_id:
-        abort(400)
+    try:
+        reminder_id = controller.post_reminder(current_user, content)
+    except APIERROR as ex:
+        abort(ex.error_code)
 
     return jsonify( {'id': reminder_id} )
 
@@ -82,9 +90,10 @@ def post_reminders():
 def edit_reminders(reminder_id):
     content = request.json['content']
 
-    status_code, reminder_id = controller.put_reminder(current_user, reminder_id, content)
-    if status_code != 200:
-        abort(status_code)
+    try:
+        controller.put_reminder(current_user, reminder_id, content)
+    except APIERROR as ex:
+        abort(ex.error_code)
 
     return jsonify( {'id': reminder_id} )
 
@@ -92,8 +101,9 @@ def edit_reminders(reminder_id):
 @jwt_required()
 def delete_reminders(reminder_id):
 
-    status_code = controller.delete_reminder(current_user, reminder_id)
-    if status_code != 200:
-        abort(status_code)
+    try:
+        controller.delete_reminder(current_user, reminder_id)
+    except APIERROR as ex:
+        abort(ex.error_code)
 
     return jsonify( {} )
