@@ -1,0 +1,80 @@
+services:
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./dockerfiles/Dockerfile.frontend
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - gateway_api
+      - swagger_ui
+
+  gateway_api:
+    container_name: gateway_api
+    build:
+      context: ./api_gateway_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./api_gateway_srv/.env
+    expose:
+      - 80
+    restart: unless-stopped
+    depends_on:
+      - reminder_api
+      - user_api
+
+  reminder_api:
+    container_name: reminder_api
+    build:
+      context: ./reminder_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./reminder_srv/.env
+    expose:
+      - 80
+    restart: unless-stopped
+    depends_on:
+      - reminder_db
+
+  reminder_db:
+    image: mongo:5.0.9
+    expose:
+      - 27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example      
+
+  user_api:
+    container_name: user_api
+    build:
+      context: ./user_srv
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: ./user_srv/.env
+    expose:
+      - 80
+    restart: unless-stopped
+    depends_on:
+      - user_db
+
+  user_db:
+    image: postgres:14.4
+    expose:
+      - 5432
+    restart: always
+    environment:
+      POSTGRES_DB: User_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  swagger_ui:
+    image: swaggerapi/swagger-ui
+    expose:
+      - 8080
+    environment:
+      SWAGGER_JSON: /home/swagger-config.yaml
+    volumes:
+      - ./swagger_ui:/home
+    depends_on:
+      - gateway_api

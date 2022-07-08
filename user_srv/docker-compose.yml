@@ -1,0 +1,23 @@
+services:
+
+  user_api:
+    container_name: user_api
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.api
+    env_file: .env
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    depends_on:
+      - user_db
+
+  user_db:
+    image: postgres:14.4
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: User_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

@@ -1,0 +1,275 @@
+openapi: 3.0.0
+
+info:
+  title: Reminders API
+  description: Simple CRUD reminders
+  version: '1.0'
+
+servers:
+- url: https://localhost/api
+
+paths:
+  /user:
+    get:
+      tags:
+      - User
+      summary: Get logged in user
+      description: >
+        Get actual logged in user.
+      operationId: GetUser
+      responses:
+        '200':
+          description:
+            Logged user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+      deprecated: false
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Login user
+      description: >
+        Login to system.
+        If it's a new user it will be registered and automatically logged in
+      operationId: Login
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      security: []
+      responses:
+        '200':
+          description:
+            Successfully authenticated.
+            The session ID is returned in a cookie named `access_token_cookie`. You need to include this cookie in subsequent requests.
+          headers:
+            Set-Cookie:
+              schema: 
+                type: string
+                example: access_token_cookie=abcde12345; Path=/; Secure; HttpOnly;
+        '401':
+          description:
+            User and password could not be authenticated.
+      deprecated: false
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout user
+      description: Logout user from system
+      operationId: Logout
+      security:
+        - cookieAuth: []      
+      responses:
+        '200':
+          description:
+            The cookie named `access_token_cookie` is removed.
+      deprecated: false
+  /reminder:
+    get:
+      tags:
+      - Reminder
+      summary: Get reminders
+      description: >
+        Get all user's reminders with their ID.
+        The ID could be used to edit or delete reminder
+      operationId: Getreminders
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description:
+            Reminders list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemindersListResponse'
+        '401':
+          description:
+            User not logged in.
+      deprecated: false
+    post:
+      tags:
+      - Reminder
+      summary: Post reminder
+      description: >
+        Save a reminder in logged user list.
+        The ID is returned and it could be used to edit or delete it later
+      operationId: Postreminder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReminderRequest'
+        required: true
+      security:
+        - cookieAuth: []        
+      responses:
+        '200':
+          description: Reminder has been stored in database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReminderResponse'
+        '400':
+          description:
+            Reminder content empty.
+        '401':
+          description:
+            User not logged in.
+      deprecated: false
+  /reminder/{id}:
+    put:
+      tags:
+      - Reminder
+      summary: Put reminder
+      description: Change existing reminder content
+      operationId: Putreminder
+      parameters:
+        - name: id
+          in: path
+          description: Reminder ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Reminder content
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReminderRequest'
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Reminder has been changed in database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReminderResponse'
+        '400':
+          description:
+            Reminder content empty.
+        '401':
+          description:
+            User not logged in.
+        '404':
+          description:
+            Reminder ID not found.
+      deprecated: false
+    delete:
+      tags:
+      - Reminder
+      summary: Delete reminder
+      description: Delete reminder from database
+      operationId: Deletereminder
+      parameters:
+        - name: id
+          in: path
+          description: Reminder ID
+          required: true
+          schema:
+            type: string
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Reminder has been deleted from database
+        '401':
+          description:
+            User not logged in.
+        '404':
+          description:
+            Reminder ID not found.
+      deprecated: false
+
+components:
+  schemas:
+    UserInfo:
+      title: UserInfo
+      description:
+        Logged user information
+      required:
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+      example:
+        username: user
+    LoginRequest:
+      title: LoginRequest
+      description:
+        User and password
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: user
+        password: '1234'
+    ReminderRequest:
+      title: Post/Put Reminder Request
+      required:
+      - content
+      type: object
+      properties:
+        content:
+          type: string
+      example:
+        content: Test data content
+    RemindersListResponse:
+      title: Reminders List
+      description:
+        All user's reminders
+      type: object
+      properties:
+        reminders:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              content:
+                type: string
+      example:
+        reminders:
+          - id: 62c4cca7a4d7587d03457712
+            content: Reminders example text
+          - id: 587d0345771262c4cca7a4d7
+            content: Other reminders example text
+    ReminderResponse:
+      title: Reminder ID Response
+      required:
+      - content
+      type: object
+      properties:
+        id:
+          type: string
+      example:
+        id: 62c4cca7a4d7587d03457712
+
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: access_token_cookie        
+
+tags:
+- name: User
+  description: 'User resource'
+- name: Reminder
+  description: 'Reminder resource'
