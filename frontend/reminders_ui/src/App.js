@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { UserContext } from './hooks/UserContext';
 import Login from "./pages/login";
+import Main from "./pages/main";
 import Layout from "./components/Layout";
 import PublicRoute from "./components/generic/PublicRoute";
 import PrivateRoute from "./components/generic/PrivateRoute";
@@ -26,7 +27,7 @@ export default function App() {
         <Routes>
         <Route path="/login" element={<PublicRoute restricted={false}><Login /></PublicRoute>}/>
         <Route element={<Layout />}>
-          <Route path="/" element={<PrivateRoute></PrivateRoute>}/>
+          <Route path="/" element={<PrivateRoute><Main/></PrivateRoute>}/>
         </Route>
         </Routes>
       </UserContext.Provider>

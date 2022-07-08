@@ -7,14 +7,11 @@ export default function Layout() {
   return (
     <div className="App">
       <AppHeader/>
-      <section className="App-main">
-        <main>
+      <section>
+        <main className="App-main">
         <Outlet />
         </main>
       </section>
-      <footer className="App-footer">
-        (c) 2022
-      </footer>
     </div>
   );
 }

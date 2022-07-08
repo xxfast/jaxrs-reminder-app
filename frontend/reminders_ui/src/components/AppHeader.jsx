@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import { Button, Grid, Stack, Typography } from '@mui/material';
 
 import LogoutBtn from './LogoutBtn'
 import { UserContext } from '../hooks/UserContext';
@@ -18,9 +17,19 @@ export default function AppHeader() {
 
     return (
         <header className="App-header">
-            <div className="App-header-user">
-                <UserHeaderMenu/>
-            </div>
+            <Grid container direction="row" justifyContent="space-between" alignItems="center">
+                <Grid item/>
+                <Grid item>
+                    <Typography component={'span'} variant="h3" gutterBottom>
+                        Reminders App
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Stack direction="row" spacing={1} justifyContent="flex-end" alignItems="center">
+                        <UserHeaderMenu/>
+                    </Stack>
+                </Grid>
+            </Grid>
         </header>
     );
   }
