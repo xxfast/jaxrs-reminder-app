@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Button, Grid, Stack, Typography } from '@mui/material';
+import { Button, Grid, Link, Stack, Typography } from '@mui/material';
 
 import LogoutBtn from './LogoutBtn'
 import { UserContext } from '../hooks/UserContext';
@@ -18,7 +18,9 @@ export default function AppHeader() {
     return (
         <header className="App-header">
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                <Grid item/>
+                <Grid item>
+                    <Link href="/doc/" variant="body2">Swagger API documentation</Link>
+                </Grid>
                 <Grid item>
                     <Typography component={'span'} variant="h3" gutterBottom>
                         Reminders App
