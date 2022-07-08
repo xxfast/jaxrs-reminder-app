@@ -10,7 +10,7 @@ def post_item():
 
     content = req_data.get('content', None)
     if not content:
-        current_app.logger.info('Reminder content empty - ' + str(id))
+        current_app.logger.info('Reminder content empty')
         abort(400)
 
     id = model.save_reminder(content)
