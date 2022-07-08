@@ -1,4 +1,4 @@
-import { useState, useContext }  from 'react';
+import { useState, useContext, useEffect }  from 'react';
 import Cookies from 'js-cookie';
 import {
     Card, 
@@ -91,7 +91,7 @@ export default function Reminder(props) {
                         autoFocus
                         margin="dense"
                         label="Reminder text"
-                        defaultValue={original_content}
+                        value={editedContent}
                         fullWidth
                         variant="standard"
                         multiline
